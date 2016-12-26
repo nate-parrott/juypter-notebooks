@@ -1,0 +1,4 @@
+*.pyc
+models/
+.ipynb_checkpoints/
+*.tfrecords

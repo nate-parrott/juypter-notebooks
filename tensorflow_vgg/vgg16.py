@@ -9,13 +9,14 @@ VGG_MEAN = [103.939, 116.779, 123.68]
 
 
 class Vgg16:
-    def __init__(self, vgg16_npy_path=None):
+    def __init__(self, vgg16_npy_path=None, avg_pooling=False):
         if vgg16_npy_path is None:
             path = inspect.getfile(Vgg16)
             path = os.path.abspath(os.path.join(path, os.pardir))
             path = os.path.join(path, "../../data/vgg16.npy")
             vgg16_npy_path = path
             print path
+            self.avg_pooling = avg_pooling
 
         self.data_dict = np.load(vgg16_npy_path, encoding='latin1').item()
         print("npy file loaded")
@@ -84,6 +85,7 @@ class Vgg16:
         return tf.nn.avg_pool(bottom, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME', name=name)
 
     def max_pool(self, bottom, name):
+        if self.avg_pooling: return self.avg_pool(bottom, name)
         return tf.nn.max_pool(bottom, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME', name=name)
 
     def conv_layer(self, bottom, name):

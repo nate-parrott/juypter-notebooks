@@ -18,4 +18,4 @@ def imshow_multi(images):
         fig.axes.get_yaxis().set_visible(False)
     plt.show()
 
-imshow_multi(test_in[:10])
+# imshow_multi(test_in[:10])

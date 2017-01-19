@@ -13,6 +13,7 @@ def load_image(path, size=224):
     # load image
     img = skimage.io.imread(path)
     img = img / 255.0
+    if size is None: return img
     assert (0 <= img).all() and (img <= 1.0).all()
     # print "Original Image Shape: ", img.shape
     # we crop image from center

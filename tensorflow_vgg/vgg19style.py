@@ -39,6 +39,7 @@ class Vgg19:
             green - VGG_MEAN[1],
             red - VGG_MEAN[2],
         ])
+        self.bgr = bgr
 
         self.conv1_1 = self.conv_layer(bgr, "conv1_1")
         self.conv1_2 = self.conv_layer(self.conv1_1, "conv1_2")

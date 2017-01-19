@@ -1,7 +1,8 @@
-# MUST PREFIX CELL WITH %matplotlib inline
+# MUST PREFIX CELL WITH %matplotlib inline if using imshow*
 
 import matplotlib.pyplot as plt
 import numpy as np
+from PIL import Image
 
 def imshow(im):
     plt.figure()
@@ -21,3 +22,6 @@ def imshow_multi(images):
     plt.show()
 
 # imshow_multi(test_in[:10])
+
+def to_pil(img):
+    return Image.fromarray(np.clip(img * 255, 0, 255).astype(np.uint8))
